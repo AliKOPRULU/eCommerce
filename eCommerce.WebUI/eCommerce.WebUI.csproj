@@ -282,6 +282,20 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eCommerce.Contracts\eCommerce.Contracts.csproj">
+      <Project>{7643e074-7db5-481f-9eb5-cec833019117}</Project>
+      <Name>eCommerce.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eCommerce.DAL\eCommerce.DAL.csproj">
+      <Project>{c915b19b-0689-4e72-976a-193274db5151}</Project>
+      <Name>eCommerce.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eCommerce.Model\eCommerce.Model.csproj">
+      <Project>{e1c423f7-e77d-48db-bbad-960c1c1b5e99}</Project>
+      <Name>eCommerce.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
