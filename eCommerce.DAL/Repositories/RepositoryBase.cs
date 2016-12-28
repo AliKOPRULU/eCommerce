@@ -1,4 +1,5 @@
-﻿using eCommerce.DAL.Data;
+﻿using eCommerce.Contracts.Repositories;
+using eCommerce.DAL.Data;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,7 +11,7 @@ namespace eCommerce.DAL.Repositories
 {
     //IEnumerable ve IQueryable arasındaki temel fark, IEnumerable tüm verileri alıp memory de tutarak, sorgulama işlemlerini memory üzerinden yapar
     //IQueryable ise şartlara bağlı query oluşturarak doğrudan veritabanı üzerinden sorgulama işlemi yapar.
-    public abstract class RepositoryBase<TEntity>where TEntity:class
+    public abstract class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity:class
     {
         internal DataContext context;//internal Dll veya Exe dosyasının içerisinde erişim için kısıtlama yoktur, ama dışarıdan erişilemez.
         internal DbSet<TEntity> dbSet;
