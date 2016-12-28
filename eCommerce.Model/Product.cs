@@ -18,5 +18,8 @@ namespace eCommerce.Model
 
         [Range(0, 999.99)]
         public decimal Price { get; set; }
+
+        [Range(0,999.99)]
+        public decimal CostPrice { get; set; }
     }
 }
