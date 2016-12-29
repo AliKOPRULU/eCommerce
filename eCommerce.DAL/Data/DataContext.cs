@@ -22,5 +22,7 @@ namespace eCommerce.DAL.Data
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<OrderItem> OrderItems { get; set; }
+
+        public System.Data.Entity.DbSet<eCommerce.Model.BasketItem> BasketItems { get; set; }
     }
 }
