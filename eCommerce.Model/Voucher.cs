@@ -12,7 +12,7 @@ namespace eCommerce.Model
         public int VoucherId { get; set; }
 
         [MaxLength(10)]
-        public string VoucherCode { get; set; }
+        public string VoucherCode { get; set; }//Adı diyebiliriz bu isimle kullanılıyor
 
         public int VoucherTypeId { get; set; }
 

@@ -15,6 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playground", "Playground\Pl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerce.Services", "eCommerce.Services\eCommerce.Services.csproj", "{75197C7A-272C-4488-B9AE-B65A94803683}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{7831626C-1B3B-454C-914F-67FB2C1D6FF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerce.Modules.Vouchers.MoneyOff", "eCommerce.Modules.Vouchers.MoneyOff\eCommerce.Modules.Vouchers.MoneyOff.csproj", "{67102D17-35E5-4DB3-8FD8-266F332C6A66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerce.Modules.Vouchers.PercentOff", "eCommerce.Modules.Vouchers.PercentOff\eCommerce.Modules.Vouchers.PercentOff.csproj", "{D0808506-5630-4EDF-A6B7-AA6D5BEACF9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,8 +51,20 @@ Global
 		{75197C7A-272C-4488-B9AE-B65A94803683}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75197C7A-272C-4488-B9AE-B65A94803683}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75197C7A-272C-4488-B9AE-B65A94803683}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67102D17-35E5-4DB3-8FD8-266F332C6A66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67102D17-35E5-4DB3-8FD8-266F332C6A66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67102D17-35E5-4DB3-8FD8-266F332C6A66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67102D17-35E5-4DB3-8FD8-266F332C6A66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0808506-5630-4EDF-A6B7-AA6D5BEACF9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0808506-5630-4EDF-A6B7-AA6D5BEACF9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0808506-5630-4EDF-A6B7-AA6D5BEACF9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0808506-5630-4EDF-A6B7-AA6D5BEACF9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{67102D17-35E5-4DB3-8FD8-266F332C6A66} = {7831626C-1B3B-454C-914F-67FB2C1D6FF7}
+		{D0808506-5630-4EDF-A6B7-AA6D5BEACF9D} = {7831626C-1B3B-454C-914F-67FB2C1D6FF7}
 	EndGlobalSection
 EndGlobal

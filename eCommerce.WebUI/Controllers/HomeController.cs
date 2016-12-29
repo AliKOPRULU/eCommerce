@@ -17,14 +17,26 @@ namespace eCommerce.WebUI.Controllers
         IRepositoryBase<Customer> customers;
         IRepositoryBase<Product> products;
         IRepositoryBase<Basket> baskets;
+        IRepositoryBase<Voucher> vouchers;
+        IRepositoryBase<VoucherType> voucherTypes;
+        IRepositoryBase<BasketVoucher> basketVouchers;
         BasketService basketService;
 
-        public HomeController(IRepositoryBase<Customer> customers, IRepositoryBase<Product> products, IRepositoryBase<Basket> baskets, BasketService basketService)
+        public HomeController(IRepositoryBase<Customer> customers, IRepositoryBase<Product> products, IRepositoryBase<Basket> baskets, BasketService basketService, IRepositoryBase<Voucher> vouchers, IRepositoryBase<VoucherType> voucherTypes, IRepositoryBase<BasketVoucher> basketVouchers)
         {
             this.customers = customers;
             this.products = products;
             this.baskets = baskets;
-            basketService = new BasketService(this.baskets);
+            this.vouchers = vouchers;
+            this.voucherTypes = voucherTypes;
+            this.basketVouchers = basketVouchers;
+            basketService = new BasketService(this.baskets,this.vouchers,this.voucherTypes,this.basketVouchers);
+        }
+
+        public ActionResult BasketSummary()
+        {
+            var model = basketService.GetBasket(this.HttpContext);
+            return View(model);
         }
 
         public ActionResult AddToBasket(int id)
@@ -33,10 +45,10 @@ namespace eCommerce.WebUI.Controllers
             return RedirectToAction("BasketSummary");
         }
 
-        public ActionResult BasketSummary()
+        public ActionResult AddBasketVoucher(string voucherCode)
         {
-            var model = basketService.GetBasket(this.HttpContext);
-            return View(model);
+            basketService.AddVoucher(voucherCode, this.HttpContext);
+            return RedirectToAction("BasketSummary");
         }
 
         public ActionResult Index()

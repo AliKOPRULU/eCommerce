@@ -2,6 +2,9 @@
 @{
     ViewBag.Title = "Index";
 }
+<h1>Administration</h1>
 
-@Html.ActionLink("Products", "ProductList", null, new { @class="btn btn-mg btn-info"})
+@Html.ActionLink("Product", "ProductList", null, new { @class="btn btn-mg btn-info"})
+@Html.ActionLink("Voucher Types", "VoucherTypes", null, new { @class = "btn btn-mg btn-info" })
+@Html.ActionLink("Vouchers", "Vouchers", null, new { @class = "btn btn-mg btn-info" })
 
