@@ -13,20 +13,27 @@ namespace eCommerce.WebUI.Controllers
     public class HomeController : Controller
     {
         IRepositoryBase<Customer> customers;
+        IRepositoryBase<Product> products;
 
-        public HomeController(IRepositoryBase<Customer> customers)
+        public HomeController(IRepositoryBase<Customer> customers, IRepositoryBase<Product> products)
         {
             this.customers = customers;
+            this.products = products;
         }
 
         public ActionResult Index()
         {
             //CustomerRepository customer = new CustomerRepository(new DataContext());
-            ProductRepository product = new ProductRepository(new DataContext());
+            //ProductRepository product = new ProductRepository(new DataContext());
+            var productList = products.GetAll();
 
-            //    IRepositoryBase<Customer> customers = new CustomerRepository(new DataContext());
+            return View(productList);
+        }
 
-            return View();
+        public ActionResult Details(int id)
+        {
+            var product = products.GetById(id);
+            return View(product);
         }
 
         public ActionResult About()
