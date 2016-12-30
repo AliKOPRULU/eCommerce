@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eCommerce.Contracts.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace eCommerce.Model
 {
-    public class BasketVoucher//:IBasketVoucher
+    public class BasketVoucher : IBasketVoucher
     {
         public int BasketVoucherId { get; set; }
 

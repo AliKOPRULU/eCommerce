@@ -52,6 +52,12 @@
     <Compile Include="Voucher.cs" />
     <Compile Include="VoucherType.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eCommerce.Contracts\eCommerce.Contracts.csproj">
+      <Project>{7643e074-7db5-481f-9eb5-cec833019117}</Project>
+      <Name>eCommerce.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

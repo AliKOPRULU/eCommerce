@@ -1,4 +1,5 @@
-﻿using eCommerce.Contracts.Repositories;
+﻿using eCommerce.Contracts.Modules;
+using eCommerce.Contracts.Repositories;
 using eCommerce.Model;
 using System;
 using System.Collections.Generic;
@@ -57,7 +58,6 @@ namespace eCommerce.Services
                     BasketId = basket.BasketId,
                     ProductId = productId,
                     Quantity = quantity
-
                 };
                 basket.BasketItems.Add(item);
             }
@@ -70,7 +70,7 @@ namespace eCommerce.Services
             return success;
         }
 
-        private Basket GetBasket(HttpContextBase httpContext)
+        public Basket GetBasket(HttpContextBase httpContext)
         {
             HttpCookie cookie = httpContext.Request.Cookies.Get(BasketSessionName);
             Basket basket;
@@ -106,43 +106,54 @@ namespace eCommerce.Services
                 if (voucherType != null)
                 {
                     BasketVoucher basketVoucher = new BasketVoucher();
-                    if (voucherType.Type == "MoneyOff")
+                    try
                     {
-                        MoneyOff(voucher, basket, basketVoucher);
+                        IeVoucher voucherProcessor = Activator.CreateInstance(Type.GetType(voucherType.VoucherModule)) as IeVoucher;                        
+                        voucherProcessor.ProcessVoucher(voucher, basket, basketVoucher);
                     }
-                    if (voucherType.Type == "PercentOff")
+                    catch (Exception)
                     {
-                        PercentOff(voucher, basket, basketVoucher);
+
+                        throw;
                     }
+                    //BasketVoucher basketVoucher = new BasketVoucher();
+                    //if (voucherType.Type == "MoneyOff")
+                    //{
+                    //    MoneyOff(voucher, basket, basketVoucher);
+                    //}
+                    //if (voucherType.Type == "PercentOff")
+                    //{
+                    //    PercentOff(voucher, basket, basketVoucher);
+                    //}
                     baskets.Commit();
                 }
             }
         }
 
-        private void MoneyOff(Voucher voucher, Basket basket, BasketVoucher basketVoucher)
-        {
-            decimal basketTotal = basket.BasketTotal();
-            if (voucher.MinSpend < basketTotal)
-            {
-                basketVoucher.Value = voucher.Value * -1;
-                basketVoucher.VoucherCode = voucher.VoucherCode;
-                basketVoucher.VoucherDescription = voucher.VoucherDescription;
-                basketVoucher.VoucherId = voucher.VoucherId;
-                basket.AddBasketVoucher(basketVoucher);
-            }
-        }
+        //private void MoneyOff(Voucher voucher, Basket basket, BasketVoucher basketVoucher)
+        //{
+        //    decimal basketTotal = basket.BasketTotal();
+        //    if (voucher.MinSpend < basketTotal)
+        //    {
+        //        basketVoucher.Value = voucher.Value * -1;
+        //        basketVoucher.VoucherCode = voucher.VoucherCode;
+        //        basketVoucher.VoucherDescription = voucher.VoucherDescription;
+        //        basketVoucher.VoucherId = voucher.VoucherId;
+        //        basket.AddBasketVoucher(basketVoucher);
+        //    }
+        //}
 
-        private void PercentOff(Voucher voucher, Basket basket, BasketVoucher basketVoucher)
-        {
-            if (voucher.MinSpend > basket.basketTotal())
-            {
-                basketVoucher.Value = (voucher.Value * (basket.BasketTotal() / 100)) * -1;
-                basketVoucher.VoucherCode = voucher.VoucherCode;
-                basketVoucher.VoucherDescription = voucher.VoucherDescription;
-                basketVoucher.VoucherId = voucher.VoucherId;
-                basket.AddBasketVoucher(basketVoucher);
-            }
-        }
+        //private void PercentOff(Voucher voucher, Basket basket, BasketVoucher basketVoucher)
+        //{
+        //    if (voucher.MinSpend > basket.basketTotal())
+        //    {
+        //        basketVoucher.Value = (voucher.Value * (basket.BasketTotal() / 100)) * -1;
+        //        basketVoucher.VoucherCode = voucher.VoucherCode;
+        //        basketVoucher.VoucherDescription = voucher.VoucherDescription;
+        //        basketVoucher.VoucherId = voucher.VoucherId;
+        //        basket.AddBasketVoucher(basketVoucher);
+        //    }
+        //}
 
 
     }

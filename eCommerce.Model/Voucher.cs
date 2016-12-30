@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eCommerce.Contracts.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace eCommerce.Model
 {
-    public class Voucher//:IVoucher
+    public class Voucher : IVoucher
     {
         public int VoucherId { get; set; }
 
@@ -29,5 +30,7 @@ namespace eCommerce.Model
 
         [MaxLength(255)]
         public string AssignedTo { get; set; }
+
+       
     }
 }
